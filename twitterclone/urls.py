@@ -24,4 +24,4 @@ from authentication.urls import urlpatterns as a_urls
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
-urlpatterns += t_user_urls
+urlpatterns += t_user_urls + t_urls + n_urls + a_urls
