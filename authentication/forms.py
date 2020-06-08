@@ -9,5 +9,4 @@ class LoginForm(forms.Form):
 class SignUpForm(forms.Form):
     username = forms.CharField(max_length=30)
     password = forms.CharField(widget=forms.PasswordInput)
-    # display_name = forms.CharField(max_length=30)
     displayname = forms.CharField(max_length=30)
