@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Twitter Clone</title>
+  </head>
+  <body align="center">
+    <h1> Login </h1>
+    <form action="/login/" method="POST">
+        {% csrf_token %}
+        {{ form.as_p}}
+    <input type="submit" value="Login">
+    <p><a href="/signup/">Don't have an account?</a></p>
+    </form>
+  </body>
+</html>
