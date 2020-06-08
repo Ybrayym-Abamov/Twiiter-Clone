@@ -13,7 +13,7 @@ def login_view(request):
             user = authenticate(request, username=data['username'], password=data['password'])
             if user:
                 login(request, user)
-                return HttpResponseRedirect(request.GET.get('next', reverse('loginpage')))
+                return HttpResponseRedirect(request.GET.get('next', reverse('homepage')))
     form = LoginForm()
     return render(request, 'login.html', {"form": form})
 
@@ -31,7 +31,7 @@ def signup_view(request):
             user = TwitterUser.objects.create_user(
                 username=data['username'],
                 password=data['password'],
-                display_name=data['display_name']
+                displayname=data['displayname']
             )
             if user:
                 login(request, user)
