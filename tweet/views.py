@@ -8,6 +8,7 @@ from twitteruser.models import TwitterUser
 # Create your views here.
 
 
+@login_required
 def post_tweet(request):
     if request.method == "POST":
         form = TweetForm(request.POST)
