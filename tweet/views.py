@@ -37,9 +37,9 @@ def main(request):
     return render(request, 'main.html', {'data': data})
 
 
-# def profile(request):
-#     myprofile = TwitterUser.objects.get(id=request.user.id)
-#     mymessages = Tweet.objects.filter(
-#         this_user=myprofile.id).order_by('-created_at')
-#     return render(request, 'profile.html', {'mymessages': mymessages,
-#                                             "myprofile": myprofile})
+def profile(request):
+    myprofile = TwitterUser.objects.get(id=request.user.id)
+    mymessages = Tweet.objects.filter(
+        this_user=myprofile.id).order_by('-created_at')
+    return render(request, 'profile.html', {'mymessages': mymessages,
+                                            "myprofile": myprofile})
