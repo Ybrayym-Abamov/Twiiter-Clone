@@ -6,5 +6,9 @@ class TweetForm(forms.ModelForm):
     class Meta:
         model = Tweet
         fields = [
-            'message_box'
+            'messagebox'
         ]
+
+
+# class TweetForm(forms.Form):
+#     tweet = forms.CharField(widget=forms.Textarea, max_length=140)

@@ -1,3 +1,9 @@
-{% for tweet in data %}
-    {{tweet}}
-{%endfor%}
+<div align="center">
+    <p>=============================</p>
+    {% for tweet in data %}
+        <p>{{tweet.this_user}}</p>
+        <p>{{tweet.messagebox}}</p>
+        <p>{{tweet.created_at}}</p> <br>
+        <p>=============================</p>
+    {%endfor%}
+</div>
