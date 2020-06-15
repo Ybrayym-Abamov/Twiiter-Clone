@@ -1,9 +1,12 @@
+<h1><a href="/">HOME</a></h1>
+<h1><a href="/profile/">My Profile</a></h1>
+<hr>
 <div align="center">
     <p>=============================</p>
     {% for tweet in data %}
         <p>{{tweet.this_user}}</p>
         <p>{{tweet.messagebox}}</p>
         <p>{{tweet.created_at}}</p> <br>
-        <p>=============================</p>
+    <p>=============================</p>
     {%endfor%}
 </div>
