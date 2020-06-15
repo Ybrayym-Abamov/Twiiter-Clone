@@ -2,9 +2,9 @@
 <div align="center">
     <h1>My Profile</h1>
     <p>=============================</p>
-    {% for message in mymessages%}
+    {% for message in usertweets%}
             <p>{{message.messagebox}}</p>
-            <p>{{message.created_at}}</p> <br>
+            <p>{{message.created_at}}</p>
     <p>=============================</p>
     {% endfor %}
 </div>
