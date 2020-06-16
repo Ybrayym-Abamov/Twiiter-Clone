@@ -32,6 +32,7 @@ def post_tweet(request):
     return render(request, 'tweet.html', {'form': form})
 
 
+@login_required
 def main(request):
     data = Tweet.objects.all()
     return render(request, 'main.html', {'data': data})
@@ -39,13 +40,33 @@ def main(request):
 
 def profile(request, username):
     html = 'profile.html'
-    myprofile = TwitterUser.objects.get(id=request.user.id)  # get's my profile ID
-    twitteruser = TwitterUser.objects.get(username=username)  # get's an ID of a user
+    # get's my profile ID
+    myprofile = TwitterUser.objects.get(id=request.user.id)
+    # get's an ID of a user
+    twitteruser = TwitterUser.objects.get(username=username)
+    # get's all of the user's tweets
     usertweets = Tweet.objects.filter(
-        this_user=twitteruser).order_by('-created_at')  # get's all of the user's tweets
+        this_user=twitteruser).order_by('-created_at')
     context = {
         'myprofile': myprofile,
         'twitteruser': twitteruser,
         'usertweets': usertweets,
     }
     return render(request, html, context)
+
+
+def tweet_detail(request, id):
+    data = Tweet.objects.get(id=id)
+    return render(request, 'tweet_detail.html', {'data': data})
+
+
+def user_detail(request, id):
+    if request.user.is_authenticated:
+        if request.user.id == id:
+            return HttpResponseRedirect(reverse('profile',
+                                        kwargs={
+                                            'username': request.user.username})
+                                        )
+    user = TwitterUser.objects.get(id=id)
+    tweet = Tweet.objects.filter(this_user=TwitterUser.objects.get(id=id))
+    return render(request, 'user_detail.html', {'user': user, 'tweet': tweet})
