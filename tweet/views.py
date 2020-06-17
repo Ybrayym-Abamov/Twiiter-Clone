@@ -24,7 +24,7 @@ def post_tweet(request):
                 for user in username:
                     target = TwitterUser.objects.get(username=user)
                     Notification.objects.create(
-                        messagebox=messagebox,
+                        notified_tweet=messagebox,
                         target_user=target
                     )
         return HttpResponseRedirect(reverse('homepage'))
