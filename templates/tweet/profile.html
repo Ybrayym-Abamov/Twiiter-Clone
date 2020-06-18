@@ -1,9 +1,11 @@
 <h1><a href="/">HOME</a></h1>
 <div align="center">
-    <h1>My Profile</h1>
-
-
-
+    {% if request.user.id != twitteruser.id %}
+        <h1>{{twitteruser.username}}'s Profile</h1>
+    {% endif %}
+    {% comment %} {% if request.user.id == twitteruser.id %}
+        <h1>My Profile</h1>
+    {% endif %} {% endcomment %}
 
     <p>=============================</p>
     {% if number_of_tweets > 1 %}
