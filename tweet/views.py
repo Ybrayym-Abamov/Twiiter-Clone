@@ -44,6 +44,10 @@ def profile(request, username):
     myprofile = TwitterUser.objects.get(id=request.user.id)
     # get's an ID of a user
     twitteruser = TwitterUser.objects.get(username=username)
+    # get's the total number of a user's tweets
+    number_of_tweets = Tweet.objects.filter(this_user=twitteruser).count()
+    # get's the total number of accounts being followed
+    numbder_of_following = twitteruser.following.count()
     # get's all of the user's tweets
     usertweets = Tweet.objects.filter(
         this_user=twitteruser).order_by('-created_at')
@@ -51,6 +55,8 @@ def profile(request, username):
         'myprofile': myprofile,
         'twitteruser': twitteruser,
         'usertweets': usertweets,
+        'number_of_tweets': number_of_tweets,
+        'numbder_of_following': numbder_of_following
     }
     return render(request, html, context)
 

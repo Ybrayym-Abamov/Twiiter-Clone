@@ -6,8 +6,10 @@ from twitteruser.models import TwitterUser
 
 @login_required
 def notif(request, username):
-    notif_count = Notification.objects.filter(target_user=request.user).filter(tweet_visibility=True).count()
-    actual_notifs = Notification.objects.filter(target_user=request.user).filter(tweet_visibility=True)
+    notif_count = Notification.objects.filter(
+        target_user=request.user).filter(tweet_visibility=True).count()
+    actual_notifs = Notification.objects.filter(
+        target_user=request.user).filter(tweet_visibility=True)
     for notif in actual_notifs:
         notif.tweet_visibility = False
         notif.save()
