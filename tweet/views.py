@@ -34,7 +34,7 @@ def post_tweet(request):
 
 @login_required
 def main(request):
-    data = Tweet.objects.all()
+    data = Tweet.objects.all().order_by('-created_at')
     return render(request, 'main.html', {'data': data})
 
 
