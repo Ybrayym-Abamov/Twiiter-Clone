@@ -3,9 +3,9 @@
     {% if request.user.id != twitteruser.id %}
         <h1>{{twitteruser.username}}'s Profile</h1>
     {% endif %}
-    {% comment %} {% if request.user.id == twitteruser.id %}
+    {% if request.user.id == twitteruser.id %}
         <h1>My Profile</h1>
-    {% endif %} {% endcomment %}
+    {% endif %}
 
     <p>=============================</p>
     {% if number_of_tweets > 1 %}
