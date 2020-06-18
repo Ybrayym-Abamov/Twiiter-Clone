@@ -1,0 +1,17 @@
+{% if notif_count > 1%}
+    {{notif_count}} Notifications
+{% endif %}
+
+{% if notif_count == 1%}
+    {{notif_count}} Notification
+{% endif %}
+
+{% if notif_count < 1%}
+    No notifications
+{% endif %}
+
+{% for notif in actual_notifs %}
+    {% if notif.tweet_visibility %}
+        {{notif.notified_tweet}}
+    {% endif %}
+{% endfor %}
