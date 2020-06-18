@@ -6,7 +6,7 @@
     <p>=============================</p>
     {% for tweet in data %}
         <p><a href="/profile/{{tweet.this_user}}/">{{tweet.this_user}}</a></p>
-        <p><a href="/tweetdetail/{{tweet.this_user.id}}">{{tweet.messagebox}}</a></p>
+        <p><a href="/tweetdetail/{{tweet.id}}/">{{tweet.messagebox}}</a></p>
         <p>{{tweet.created_at}}</p>
     <p>=============================</p>
     {%endfor%}
