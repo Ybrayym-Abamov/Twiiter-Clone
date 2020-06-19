@@ -34,8 +34,21 @@ def post_tweet(request):
 
 @login_required
 def main(request):
-    data = Tweet.objects.all()
-    return render(request, 'main.html', {'data': data})
+    # get's all of my tweets, which is just a query set
+    tweets = Tweet.objects.filter(this_user=request.user)
+    notif_count = Notification.objects.filter(
+        target_user=request.user).filter(tweet_visibility=True).count()
+    # for looping over my following query set
+    for follower in request.user.following.all():
+        # extending my initial tweets query set
+        # by adding the tweets of the people I follow
+        # the loop keeps running but everytime I run it new tweet of a user
+        # get's added to my tweets query set that I'm displaying on the
+        # my main page
+        tweets = tweets | Tweet.objects.filter(this_user=follower)
+    return render(request, 'main.html', {
+        'tweets': tweets.order_by('-created_at'),
+        'notif_count': notif_count})
 
 
 def profile(request, username):
@@ -74,5 +87,13 @@ def user_detail(request, id):
                                             'username': request.user.username})
                                         )
     user = TwitterUser.objects.get(id=id)
+    following_number = user.following.count()
     tweet = Tweet.objects.filter(this_user=TwitterUser.objects.get(id=id))
-    return render(request, 'user_detail.html', {'user': user, 'tweet': tweet})
+
+    following_list = user.following.all()
+
+    return render(request, 'user_detail.html', {
+        'user': user,
+        'tweet': tweet,
+        'following_number': following_number,
+        'following_list': following_list})

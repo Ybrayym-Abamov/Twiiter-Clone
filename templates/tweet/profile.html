@@ -1,9 +1,15 @@
+<title>Twitter Clone</title>
+<link rel = "icon" href =  
+"https://developer.twitter.com/content/dam/developer-twitter/icons/twitter.png" 
+        type = "image/x-icon">
 <h1><a href="/">HOME</a></h1>
 <div align="center">
-    <h1>My Profile</h1>
-
-
-
+    {% if request.user.id != twitteruser.id %}
+        <h1>{{twitteruser.username}}'s Profile</h1>
+    {% endif %}
+    {% if request.user.id == twitteruser.id %}
+        <h1>My Profile</h1>
+    {% endif %}
 
     <p>=============================</p>
     {% if number_of_tweets > 1 %}

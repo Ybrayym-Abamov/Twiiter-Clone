@@ -1,13 +1,17 @@
+<title>Twitter Clone</title>
+<link rel = "icon" href =  
+"https://developer.twitter.com/content/dam/developer-twitter/icons/twitter.png" type = "image/x-icon">
 <h1><a href="/">Home</a></h1>
 <h1><a href="/profile/{{request.user.username}}/">My Profile</a></h1>
 <h1><a href="/tweet/">Tweet</a></h1>
+<h1><a href="/notifications/{{request.user.username}}">Notification: {{notif_count}}</a></h1>
 <hr>
 <div align="center">
     <p>=============================</p>
-    {% for tweet in data %}
-        <p>{{tweet.this_user}}</p>
-        <p>{{tweet.messagebox}}</p>
-        <p>{{tweet.created_at}}</p>
+    {% for tweet in tweets %}
+        <p style="color:grey">Username - <a href="/userdetail/{{tweet.this_user.id}}/">@{{tweet.this_user}}</a></p>
+        <p style="color:grey">Tweet - <a href="/tweetdetail/{{tweet.id}}/">{{tweet.messagebox}}</a></p>
+        <p style="color:grey">Tweeted on - {{tweet.created_at}}</p>
     <p>=============================</p>
     {%endfor%}
 </div>
