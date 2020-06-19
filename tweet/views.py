@@ -60,7 +60,7 @@ def profile(request, username):
     # get's the total number of a user's tweets
     number_of_tweets = Tweet.objects.filter(this_user=twitteruser).count()
     # get's the total number of accounts being followed
-    numbder_of_following = twitteruser.following.count()
+    numbder_of_following = twitteruser.following.count()-1  # subtracting to avoid "following yourself" bug is a bad practice
     # get's all of the user's tweets
     usertweets = Tweet.objects.filter(
         this_user=twitteruser).order_by('-created_at')
@@ -90,8 +90,7 @@ def user_detail(request, id):
     following_number = user.following.count()
     tweet = Tweet.objects.filter(this_user=TwitterUser.objects.get(id=id))
 
-    following_list = user.following.all()
-
+    following_list = request.user.following.all()
     return render(request, 'user_detail.html', {
         'user': user,
         'tweet': tweet,

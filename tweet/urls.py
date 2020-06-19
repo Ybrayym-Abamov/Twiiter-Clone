@@ -7,5 +7,5 @@ urlpatterns = [
     path('profile/<str:username>/', views.profile, name='profile'),
     # path('twitteruser/<str:username>/', views.profile),
     path('tweetdetail/<int:id>/', views.tweet_detail),
-    path('userdetail/<int:id>/', views.user_detail),
+    path('userdetail/<int:id>/', views.user_detail, name='userdetail'),
 ]

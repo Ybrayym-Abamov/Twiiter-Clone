@@ -8,10 +8,10 @@
 
 
 {% if request.user.is_authenticated %}
-    {% if not user.following %}
+    {% if user not in following_list %}
         <p><a href="/following/{{user.id}}">Follow</a></p>
     {% endif%}
-    {% if user.following %}
+    {% if user in following_list %}
         <p><a href="/unfollowing/{{user.id}}">Unfollow</a></p>
     {% endif%}
 {% endif %}
