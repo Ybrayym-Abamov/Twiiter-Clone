@@ -98,7 +98,7 @@ def user_detail(request, id):
             'following_number': following_number,
             'following_list': following_list})
     else:
-        user = TwitterUser.objects.get(id=id)
+        user = TwitterUser.objects.get(id=id) xxx
         following_number = user.following.count()
         tweet = Tweet.objects.filter(this_user=TwitterUser.objects.get(id=id))
 
