@@ -95,7 +95,7 @@ def user_detail(request, id):
         return render(request, 'user_detail.html', {
             'user': user,
             'tweet': tweet,
-            'following_number': following_number,
+            'following_number': following_number, xxxxx
             'following_list': following_list})
     else:
         user = TwitterUser.objects.get(id=id)
